@@ -165,7 +165,7 @@ declare namespace Knex {
 
     interface Join {
         (raw: Raw): QueryBuilder;
-        (tableName: string, columns: { [key: string]: string | Raw }): QueryBuilder;
+        (tableName: string, columns: { [key: string]: string | number | Raw }): QueryBuilder;
         (tableName: string, callback: Function): QueryBuilder;
         (tableName: TableName, raw: Raw): QueryBuilder;
         (tableName: TableName, column1: string, column2: string): QueryBuilder;
@@ -472,6 +472,7 @@ declare namespace Knex {
         domain?: string;
         instanceName?: string;
         debug?: boolean;
+        requestTimeout?: number;
     }
 
     // Config object for mariasql: https://github.com/mscdex/node-mariasql#client-methods

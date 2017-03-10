@@ -15,6 +15,7 @@ var xf = comp(map(inc), filter(isEven));
 
 into([], xf, [0, 1, 2, 3, 4]); // [2, 4]
 
+
 // integration
 
 var arr   = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -26,6 +27,19 @@ arr.reduce(toFn(xf, apush), []); // native
 
 function sum(a: number, b: number): number { return a + b; };
 var transduce = t.transduce;
+
+var largeVector = Immutable.List();
+
+for (var i = 0; i < 1000000; i++) {
+  largeVector = largeVector.push(i);
+}
+
+// built in Immutable-js functionality
+largeVector.map(inc).filter(isEven).reduce(sum);
+
+// faster with transducers
+var xf = comp(map(inc), filter(isEven));
+transduce(xf, sum, 0, largeVector);
 
 // source examples
 

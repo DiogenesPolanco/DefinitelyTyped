@@ -3,6 +3,17 @@
 // Definitions by: Colin Kahn <https://github.com/colinkahn>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
+export interface IteratorResult<T> {
+  done: boolean;
+  value?: T;
+}
+
+export interface Iterator<T> {
+  next(value?: any): IteratorResult<T>;
+  return?(value?: any): IteratorResult<T>;
+  throw?(e?: any): IteratorResult<T>;
+}
+
 export interface Reduced<TResult> {
   ['@@transducer/reduced']: boolean;
   ['@@transducer/value']: TResult;
